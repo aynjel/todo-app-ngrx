@@ -1,0 +1,19 @@
+{
+  users: [
+    {
+      id: 1,
+      name: "John Doe",
+      age: 29,
+      email: "john@test.com",
+      password: "password123",
+    },
+  ],
+  todos: [
+    {
+      id: 1,
+      title: "Buy groceries",
+      completed: false,
+      userId: 1,
+    },
+  ],
+}

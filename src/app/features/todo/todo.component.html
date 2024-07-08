@@ -1,1 +1,25 @@
-<p>todo works!</p>
+<form [formGroup]="addTodoForm" (ngSubmit)="addTodo()">
+  <input type="text" formControlName="title" />
+  <button type="submit">Add</button>
+</form>
+<div>
+  <button (click)="todoStore.setFilter('all')">All</button>
+  <button (click)="todoStore.setFilter('active')">Active</button>
+  <button (click)="todoStore.setFilter('completed')">Completed</button>
+</div>
+<ul>
+  @for (todo of todoStore.filteredTodos(); track todo.id) {
+  <li>
+    <input
+      type="checkbox"
+      (change)="todoStore.toggleCompletion(todo)"
+      [checked]="todo.completed"
+    />
+    <span>
+      {{ todo.title }}
+    </span>
+    <a [routerLink]="['/todo', todo.id]">Details</a>
+    <button (click)="todoStore.removeTodo(todo.id)">Remove</button>
+  </li>
+  }
+</ul>

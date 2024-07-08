@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/guards/auth.guard';
+import { todoDetailsResolver } from './features/todo/todo-details.resolver';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,16 @@ export const routes: Routes = [
     path: 'todo',
     loadComponent: () =>
       import('./features/todo/todo.component').then((m) => m.TodoComponent),
+  },
+  {
+    path: 'todo/:id',
+    loadComponent: () =>
+      import('./features/todo/components/todo-item/todo-item.component').then(
+        (m) => m.TodoItemComponent
+      ),
+    resolve: {
+      todoDetails: todoDetailsResolver,
+    },
   },
   {
     path: 'admin',
